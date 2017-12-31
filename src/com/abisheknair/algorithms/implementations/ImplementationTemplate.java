@@ -2,6 +2,7 @@ package com.abisheknair.algorithms.implementations;
 
 import jdk.jshell.spi.ExecutionControl;
 
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -9,7 +10,7 @@ public class ImplementationTemplate implements IAlgorithmImplementation {
 
     private static Logger _logger;
 
-    public void start(Logger logger) {
+    public void start(Logger logger, Scanner inputDataScanner) {
 
        _logger = logger;
 
