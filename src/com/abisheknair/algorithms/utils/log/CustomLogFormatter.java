@@ -7,11 +7,12 @@ import java.util.logging.LogRecord;
 
 public class CustomLogFormatter extends Formatter {
 
+    private static final String infoLogStringFormat = "[%1$tF %1$tT] [%2$s] %3$s %n";
+    private static final String errorLogStringFormart = "[%1$tF %1$tT] [%2$s] %3$s::%4$s %5$s %n";
+
     @Override
     public String format(LogRecord logRecord) {
 
-        final String infoLogStringFormat = "[%1$tF %1$tT] [%2$s] %3$s %n";
-        final String errorLogStringFormart = "[%1$tF %1$tT] [%2$s] %3$s::%4$s %5$s %n";
 
         String logStringMessage;
 

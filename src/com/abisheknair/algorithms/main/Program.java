@@ -1,5 +1,7 @@
 package com.abisheknair.algorithms.main;
 
+import com.abisheknair.algorithms.implementations.AlgorithmImplementationFactory;
+import com.abisheknair.algorithms.implementations.AlgorithmType;
 import com.abisheknair.algorithms.utils.log.CustomLogFormatter;
 import com.abisheknair.algorithms.implementations.IAlgorithmImplementation;
 import com.abisheknair.algorithms.implementations.union_find.UnionFindImplementation;
@@ -13,11 +15,14 @@ public class Program {
 
     public static void main(String[] args) {
 
-        // IAlgorithmImplementation algorithmImplementation = new ImplementationTemplate();
-        IAlgorithmImplementation algorithmImplementation = new UnionFindImplementation();
+        IAlgorithmImplementation algorithmImplementation;
+
+        // algorithmImplementation = new ImplementationTemplate();
+        // algorithmImplementation = AlgorithmImplementationFactory.getImplementation(AlgorithmType.QUICK_FIND);
+        algorithmImplementation = AlgorithmImplementationFactory.getImplementation(AlgorithmType.QUICK_UNION);
 
 
-        // Initialize helpers
+        // Initialize dependencies
         Logger logger = getLoggerInstance(algorithmImplementation.getClass().getName());
         Scanner inputScanner = getInputDataScanner(algorithmImplementation, logger);
         // Execute the algorithm
@@ -46,9 +51,8 @@ public class Program {
         String inputFilePath = String.format("input_files/%s/input.txt", className);
         URL inputFileURL = algoImplementation.getClass().getClassLoader().getResource(inputFilePath);
 
-        if(inputFileURL == null) {
-            useStdin = true;
-        } else {
+        if(inputFileURL != null) {
+
             try {
 
                 File inputFile = new File(inputFileURL.toURI());
@@ -62,6 +66,9 @@ public class Program {
             } catch (Exception excep) {
                 useStdin = true;
             }
+        } else {
+
+            useStdin = true;
         }
 
         if(useStdin) {
